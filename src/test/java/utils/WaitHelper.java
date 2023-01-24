@@ -41,9 +41,13 @@ public class WaitHelper {
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 	}
 	
-	public void scrollByJs()
+	public void scrollByJs(int width, int height)
 	{
-		((JavascriptExecutor)driver).executeScript("window.scrollBy(0,250)", "");
+		((JavascriptExecutor)driver).executeScript("window.scrollBy("+width+","+height+")", "");
 	}
 
+	public void scrollIntoView(WebElement element)
+	{
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+	}
 }

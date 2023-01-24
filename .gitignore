@@ -1,1 +1,14 @@
-/target/
+target/
+drivers/
+logs/
+screenshots/
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+local.properties
+.settings
+.loadpath
+.project

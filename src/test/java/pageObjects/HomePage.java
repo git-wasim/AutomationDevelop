@@ -1,6 +1,10 @@
 package pageObjects;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,11 +20,16 @@ public class HomePage{
 	String intercepted = "intercepted";
 	String visibility = "visibility";
 	
+	List<String> value1;
+	List<String> value2;
+	
 	public HomePage(WebDriver driver)
 	{
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
 		waitHelp = new WaitHelper(driver);
+		value1 = new ArrayList<String>();
+		value2 = new ArrayList<String>();
 	}
 	
 //	@FindBy(xpath="(//*[local-name()='svg' and @class='sc-aef7b723-0 dgXMPo']"
@@ -68,6 +77,21 @@ public class HomePage{
 	@FindBy(xpath="//button[contains(text(),'Apply Filter')]")
 	WebElement btnApplyFilter;
 	
+	@FindBy(xpath="//div[@id='__next']//tbody/tr")
+	List<WebElement> firstTableRows;
+	
+	@FindBy(xpath="//div[@id='__next']//tbody/tr/td[3]//a/div/div/p")
+	List<WebElement> firstTableCols;
+	
+//	@FindBy(xpath="")
+//	List<WebElement> secondTableRows;
+//	
+//	@FindBy(xpath="")
+//	List<WebElement> secondTableCols;
+//	
+	@FindBy(xpath="//div[@id='__next']//table")
+	WebElement table;
+	
 	public void showRows() 
 	{
 		waitHelp.WaitForElement(showRowsDrpDwn, intercepted, Duration.ofSeconds(20));
@@ -78,8 +102,9 @@ public class HomePage{
 	
 	public void filterAlgoWithPoW() throws InterruptedException
 	{
+		waitHelp.scrollIntoView(primaryFilter);
 		waitHelp.WaitForElement(primaryFilter, intercepted, Duration.ofSeconds(20));
-		waitHelp.scrollByJs();
+		waitHelp.scrollByJs(0,450);
 		waitHelp.clickByJs(primaryFilter);
 		waitHelp.WaitForElement(filterAlgorithm, intercepted, Duration.ofSeconds(30));
 		filterAlgorithm.click();
@@ -131,5 +156,61 @@ public class HomePage{
 		waitHelp.clickByJs(btnResult);
 	}
 	
+	public int getRowCount()
+	{
+		return(firstTableRows.size());
+	}
+	
+	public int getColCount()
+	{
+		return(firstTableCols.size());
+	}
+	
+	public List<String> extractName()
+	{
+		for(int i=1;i<=getRowCount();i++)
+		{
+			
+			WebElement element = table.findElement(By.xpath("//div[@id='__next']//table/tbody/tr["+i+"]/td[3]//a/div/div/p"));
+			waitHelp.scrollIntoView(element);
+			waitHelp.WaitForElement(element, intercepted, Duration.ofSeconds(20));
+//			waitHelp.scrollByJs(0,70);
+			String name = element.getText();
+			value1.add(name);
+			System.out.println(value1);
+		}
+		return value1;
+	}
+	
+	public List<String> extractFilteredName()
+	{
+		waitHelp.scrollIntoView(addFilter);
+		for(int i=1;i<=getRowCount();i++)
+		{
+			WebElement element = table.findElement(By.xpath("//div[@id='__next']//table/tbody/tr["+i+"]/td[3]//a/div/div/p"));
+			waitHelp.scrollIntoView(element);
+			waitHelp.WaitForElement(element, intercepted, Duration.ofSeconds(20));
+//			waitHelp.scrollByJs(0,70);
+			String name = element.getText();
+			value2.add(name);
+			System.out.println(value2);
+		}
+		return value2;
+	}
+	
+	public void matchData()
+	{
+		for(int i=0;i<=value2.size();i++)
+		{
+			if(extractFilteredName().contains(extractName().get(i)))
+			{
+				System.out.println(extractFilteredName().get(i)+" "+"is present in main content");
+			}
+			else
+			{
+				System.out.println(extractFilteredName().get(i)+" "+"is not present in main content");
+			}
+		}
+	}
 	
 }

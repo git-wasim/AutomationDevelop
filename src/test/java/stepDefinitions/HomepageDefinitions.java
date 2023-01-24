@@ -35,7 +35,7 @@ public void select_show_rows_by_twenty() throws InterruptedException {
 
 @Then("Capture All Page Contents")
 public void capture_all_page_contents() {
-	System.out.println("pass");
+	objHp.extractName();
 }
 
 @When("Filter Data By Algorith-Pow")
@@ -76,7 +76,8 @@ public void set_minimum_value_maximum_value(String minValue, String maxValue) {
 
 @Then("Compare Page Content With Main Content")
 public void compare_page_content_with_main_content() {
-    
+    objHp.extractFilteredName();
+    objHp.matchData();
 }
 
 @And("Close Bowser")
