@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.HomePage;
+import utils.BaseClass;
 
 public class HomepageDefinitions extends BaseClass {
 	

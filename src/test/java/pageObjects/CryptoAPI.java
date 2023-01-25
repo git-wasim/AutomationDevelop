@@ -19,10 +19,10 @@ public class CryptoAPI {
 				.when()
 				.get("/v2/tools/price-conversion");
 		
-		String GBP = res.then()
-				.extract()
-				.path("data.GTQ.quote.GBP.price")
-				.toString();
+		GBP = res.then()
+				 .extract()
+				 .path("data.GTQ.quote.GBP.price")
+				 .toString();
 		
 		System.out.println(GBP);
 		
@@ -35,14 +35,14 @@ public class CryptoAPI {
 		Response res = RestAssured.given()
 				.header(apiKey,apiValue)
 				.queryParam("amount", GBP)
-				.queryParam("convert", "DOGGE")
+				.queryParam("convert", "DOGE")
 				.queryParam("symbol", "GBP")
 				.when()
 				.get("/v2/tools/price-conversion");
 		
 		String DOGGE = res.then()
 				.extract()
-				.path("data.GTQ.quote.GBP.price")
+				.path("data.GBP.quote.DOGE.price")
 				.toString();
 		
 		System.out.println(DOGGE);
