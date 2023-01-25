@@ -1,9 +1,9 @@
 
-# Project Title
+# Crypto Currencies Dashboard
 
 Coinmarketcap website provides a detailed information of live market capitalizations of crypto currencies. It is the world's most-referenced price-tracking website for cryptoassets in the rapidly growing cryptocurrency space. Its mission is to make crypto discoverable and efficient globally by empowering retail users with unbiased, high quality and accurate information for drawing their own informed conclusions. 
 
-# Auto-Test Framework
+# Automation Framework
 
 Selenium & Java based frontend automation suite utilising the BDD methodologies of Cucumber and Gherkin 
 
