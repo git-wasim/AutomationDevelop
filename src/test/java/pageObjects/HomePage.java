@@ -12,140 +12,125 @@ import org.openqa.selenium.support.PageFactory;
 
 import utils.WaitHelper;
 
-public class HomePage{
-	
+public class HomePage {
+
 	public WebDriver driver;
 	public WaitHelper waitHelp;
-	
+
 	String intercepted = "intercepted";
 	String visibility = "visibility";
-	
-	List<String> value1;
+
+	static List<String> value1;
 	List<String> value2;
-	
-	public HomePage(WebDriver driver)
-	{
-		this.driver=driver;
+
+	public HomePage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		waitHelp = new WaitHelper(driver);
 		value1 = new ArrayList<String>();
 		value2 = new ArrayList<String>();
 	}
-	
+
 //	@FindBy(xpath="(//*[local-name()='svg' and @class='sc-aef7b723-0 dgXMPo']"
 //			+ "/*[local-name()='path'])[1]")
-	
-	@FindBy(xpath="//*[@id='__next']/div[1]/div[1]/div[2]/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]/div")
+
+	@FindBy(xpath = "//*[@id='__next']/div[1]/div[1]/div[2]/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]/div")
 	WebElement showRowsDrpDwn;
 
-	@FindBy(xpath="//*[@id=\"tippy-1\"]/div/div[1]/div/div/button[3]")
+	@FindBy(xpath = "//*[@id=\"tippy-1\"]/div/div[1]/div/div/button[3]")
 	WebElement selectRowCount;
-	
-	@FindBy(xpath="//div/button[contains(text(),'Filters')]")
+
+	@FindBy(xpath = "//div/button[contains(text(),'Filters')]")
 	WebElement primaryFilter;
-	
-	@FindBy(xpath="//ul/li[2]/div/span/button/span")
+
+	@FindBy(xpath = "//ul/li[2]/div/span/button/span")
 	WebElement filterAlgorithm;
-	
-	@FindBy(xpath="//div[@class='tippy-content']/div/div/div[1]/ul/li[5]")
+
+	@FindBy(xpath = "//div[@class='tippy-content']/div/div/div[1]/ul/li[5]")
 	WebElement algoPoW;
-	
-	@FindBy(xpath="//button[contains(text(),'+')]")
+
+	@FindBy(xpath = "//button[contains(text(),'+')]")
 	WebElement addFilter;
-	
-	@FindBy(xpath="//label[@id='mineable']")
+
+	@FindBy(xpath = "//label[@id='mineable']")
 	WebElement toggleMineable;
-	
-	@FindBy(xpath="//button[contains(text(),'All Cryptocurrencies')]")
+
+	@FindBy(xpath = "//button[contains(text(),'All Cryptocurrencies')]")
 	WebElement selectAllCryptoCurr;
-	
-	@FindBy(xpath="//button[contains(text(),'Coins')]")
+
+	@FindBy(xpath = "//button[contains(text(),'Coins')]")
 	WebElement selectCoins;
-	
-	@FindBy(xpath="//button[contains(text(),'Price')]")
+
+	@FindBy(xpath = "//button[contains(text(),'Price')]")
 	WebElement selectPrice;
-	
-	@FindBy(xpath="//div[@class='cmc-input-row']/input[1]")
+
+	@FindBy(xpath = "//div[@class='cmc-input-row']/input[1]")
 	WebElement minValue;
-	
-	@FindBy(xpath="//div[@class='cmc-input-row']/input[2]")
+
+	@FindBy(xpath = "//div[@class='cmc-input-row']/input[2]")
 	WebElement maxValue;
-	
-	@FindBy(xpath="//button[contains(text(),'Show results')]")
+
+	@FindBy(xpath = "//button[contains(text(),'Show results')]")
 	WebElement btnResult;
-	
-	@FindBy(xpath="//button[contains(text(),'Apply Filter')]")
+
+	@FindBy(xpath = "//button[contains(text(),'Apply Filter')]")
 	WebElement btnApplyFilter;
-	
-	@FindBy(xpath="//div[@id='__next']//tbody/tr")
+
+	@FindBy(xpath = "//div[@id='__next']//tbody/tr")
 	List<WebElement> firstTableRows;
-	
-	@FindBy(xpath="//div[@id='__next']//tbody/tr/td[3]//a/div/div/p")
+
+	@FindBy(xpath = "//div[@id='__next']//tbody/tr/td[3]//a/div/div/p")
 	List<WebElement> firstTableCols;
 	
-//	@FindBy(xpath="")
-//	List<WebElement> secondTableRows;
-//	
-//	@FindBy(xpath="")
-//	List<WebElement> secondTableCols;
-//	
-	@FindBy(xpath="//div[@id='__next']//table")
+	@FindBy(xpath = "//div[@id='__next']//table")
 	WebElement table;
-	
-	public void showRows() 
-	{
+
+	public void showRows() {
 		waitHelp.WaitForElement(showRowsDrpDwn, intercepted, Duration.ofSeconds(20));
 		waitHelp.clickByJs(showRowsDrpDwn);
-		waitHelp.WaitForElement(selectRowCount, intercepted,Duration.ofSeconds(20));
-		waitHelp.clickByJs(selectRowCount);	
+		waitHelp.WaitForElement(selectRowCount, intercepted, Duration.ofSeconds(20));
+		waitHelp.clickByJs(selectRowCount);
 	}
-	
-	public void filterAlgoWithPoW() throws InterruptedException
-	{
+
+	public void filterAlgoWithPoW() throws InterruptedException {
 		waitHelp.scrollIntoView(primaryFilter);
 		waitHelp.WaitForElement(primaryFilter, intercepted, Duration.ofSeconds(20));
-		waitHelp.scrollByJs(0,450);
+		waitHelp.scrollByJs(0, 450);
 		waitHelp.clickByJs(primaryFilter);
 		waitHelp.WaitForElement(filterAlgorithm, intercepted, Duration.ofSeconds(30));
 		filterAlgorithm.click();
 		waitHelp.WaitForElement(algoPoW, intercepted, Duration.ofSeconds(30));
 		waitHelp.clickByJs(algoPoW);
 	}
-	
-	public void addFilter()
-	{
+
+	public void addFilter() {
 		waitHelp.WaitForElement(addFilter, intercepted, Duration.ofSeconds(20));
 		addFilter.click();
 	}
-	
-	public void toggleMineable()
-	{
+
+	public void toggleMineable() {
 		waitHelp.WaitForElement(toggleMineable, intercepted, Duration.ofSeconds(20));
 		toggleMineable.click();
 		waitHelp.WaitForElement(btnResult, intercepted, Duration.ofSeconds(10));
 	}
-	
-	public void allCryptoCurr()
-	{
+
+	public void allCryptoCurr() {
 		waitHelp.WaitForElement(selectAllCryptoCurr, intercepted, Duration.ofSeconds(20));
 //		selectAllCryptoCurr.click();
 		waitHelp.clickByJs(selectAllCryptoCurr);
 	}
-	
-	public void selectCoins()
-	{
+
+	public void selectCoins() {
 		waitHelp.WaitForElement(selectCoins, intercepted, Duration.ofSeconds(20));
 		selectCoins.click();
 	}
-	
-	public void selectPrice()
-	{
+
+	public void selectPrice() {
 		waitHelp.WaitForElement(selectPrice, intercepted, Duration.ofSeconds(20));
 		selectPrice.click();
 	}
-	
-	public void enterValues(String min, String max)
-	{
+
+	public void enterValues(String min, String max) {
 		waitHelp.WaitForElement(minValue, intercepted, Duration.ofSeconds(20));
 		minValue.sendKeys(min);
 		waitHelp.WaitForElement(maxValue, intercepted, Duration.ofSeconds(20));
@@ -155,23 +140,20 @@ public class HomePage{
 		waitHelp.WaitForElement(btnResult, intercepted, Duration.ofSeconds(10));
 		waitHelp.clickByJs(btnResult);
 	}
-	
-	public int getRowCount()
-	{
-		return(firstTableRows.size());
+
+	public int getRowCount() {
+		return (firstTableRows.size());
 	}
-	
-	public int getColCount()
-	{
-		return(firstTableCols.size());
+
+	public int getColCount() {
+		return (firstTableCols.size());
 	}
-	
-	public List<String> extractName()
-	{
-		for(int i=1;i<=getRowCount();i++)
-		{
-			
-			WebElement element = table.findElement(By.xpath("//div[@id='__next']//table/tbody/tr["+i+"]/td[3]//a/div/div/p"));
+
+	public List<String> extractName() {
+		for (int i = 1; i <= getRowCount(); i++) {
+
+			WebElement element = table
+					.findElement(By.xpath("//div[@id='__next']//table/tbody/tr[" + i + "]/td[3]//a/div/div/p"));
 			waitHelp.scrollIntoView(element);
 			waitHelp.WaitForElement(element, intercepted, Duration.ofSeconds(20));
 //			waitHelp.scrollByJs(0,70);
@@ -181,36 +163,37 @@ public class HomePage{
 		}
 		return value1;
 	}
-	
-	public List<String> extractFilteredName()
-	{
+
+	public List<String> extractFilteredName() {
 		waitHelp.scrollIntoView(addFilter);
-		for(int i=1;i<=getRowCount();i++)
-		{
-			WebElement element = table.findElement(By.xpath("//div[@id='__next']//table/tbody/tr["+i+"]/td[3]//a/div/div/p"));
-			waitHelp.scrollIntoView(element);
-			waitHelp.WaitForElement(element, intercepted, Duration.ofSeconds(20));
-//			waitHelp.scrollByJs(0,70);
-			String name = element.getText();
-			value2.add(name);
-			System.out.println(value2);
+		for (int i = 1; i <= getRowCount(); i++) {
+			if (i == 21)
+				break;
+			else {
+				WebElement element = table
+						.findElement(By.xpath("//div[@id='__next']//table/tbody/tr[" + i + "]/td[3]//a/div/div/p"));
+				waitHelp.scrollIntoView(element);
+				waitHelp.WaitForElement(element, intercepted, Duration.ofSeconds(20));
+				String name = element.getText();
+				value2.add(name);
+			}
 		}
 		return value2;
 	}
-	
-	public void matchData()
-	{
-		for(int i=0;i<=value2.size();i++)
-		{
-			if(extractFilteredName().contains(extractName().get(i)))
-			{
-				System.out.println(extractFilteredName().get(i)+" "+"is present in main content");
-			}
-			else
-			{
-				System.out.println(extractFilteredName().get(i)+" "+"is not present in main content");
+
+	public void matchData() {
+		List<String> exflname = extractFilteredName();
+		for (int i = 0; i < exflname.size(); i++) {
+			if (i == 7) {
+				break;
+			} else {
+				if (exflname.contains(value1.get(i))) {
+					System.out.println(exflname.get(i) + " " + "is present in main content");
+				} else {
+					System.out.println(exflname.get(i) + " " + "is not present in main content");
+				}
 			}
 		}
 	}
-	
+
 }

@@ -76,7 +76,7 @@ public void set_minimum_value_maximum_value(String minValue, String maxValue) {
 
 @Then("Compare Page Content With Main Content")
 public void compare_page_content_with_main_content() {
-    objHp.extractFilteredName();
+//    objHp.extractFilteredName();
     objHp.matchData();
 }
 
