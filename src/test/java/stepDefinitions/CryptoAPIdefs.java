@@ -1,0 +1,21 @@
+package stepDefinitions;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import pageObjects.CryptoAPI;
+
+public class CryptoAPIdefs extends BaseClass{
+	
+	@Given("Convert Price From GTQ to GBP")
+	public void convert_price_from_gtq_to_gbp() {
+	    objApi = new CryptoAPI();
+	    objApi.priceGTQtoGBP(prop.getProperty("apikey"), prop.getProperty("apivalue"));
+	}
+
+	@Then("Convert Price From GBP to DOGGE")
+	public void convert_price_from_gbp_to_dogge() {
+	    objApi.priceGBPtoDOGGE(prop.getProperty("apikey"), prop.getProperty("apivalue"));
+	}
+
+
+}

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import pageObjects.CryptoAPI;
 import pageObjects.HomePage;
 
 public class BaseClass {
@@ -16,6 +17,7 @@ public class BaseClass {
 	public static WebDriver driver;
 	public static Properties prop;
 	public HomePage objHp;
+	public CryptoAPI objApi;
 	
 	public BaseClass()
 	{
