@@ -226,3 +226,30 @@ Each Feature file has it’s step defition, pageobject & model class
               
    6-Instantiate model object in Step definition & execute tests required per step
 ```
+
+#API Automation Test BDD framework
+
+API Automation Test is RestAssured based Cucumber framework to perform API testing. This project is useful as an example of API Testing with RestAssured and Java playing nicely together.
+
+Getting Started
+1. git clone https://github.com/git-wasim/AutomationDevelop.git
+2. Navigate to AutomationDevelop
+In terminal from root project folder (RestasssuredCucumber), run below commands as required
+
+Run Tests
+
+To run all features mvn clean test verify
+To pass environment variable from command line mvn clean test verify -DargLine=-DWSNSHELL_HOME=RSURI RSRUI is environment passed in src-> test-> java-> base-> CryptoAPI.java and defined in config.properties
+Report Path
+
+Cucumber HTML Report: {ROOT_PROJECT_FOLDER}/target/cucumber-html-reports/overview-features.html
+
+Key Features
+- Runtime environment set
+- Hashmap to simplify serialization of payload
+- Tag based execution
+- Detailed Cucumber Report
+- Header builder simplified
+- Reusable methods to perform GET, POST operations
+Sample Report
+## Getting Started
