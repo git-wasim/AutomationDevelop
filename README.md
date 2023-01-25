@@ -10,8 +10,8 @@ Selenium & Java based frontend automation suite utilising the BDD methodologies 
 ## 1. Install JAVA SDK 8
 ## 2. Install Maven
 ## 3. Install Git
-## 4. Install Intellji
-## 5. Download chromedriver 2.2 https://sites.google.com/a/chromium.org/chromedriver/downloads
+## 4. Install Eclipse
+## 5. Download chromedriver 109 https://sites.google.com/a/chromium.org/chromedriver/downloads
 
 ### Set Path Variables
 
@@ -32,16 +32,14 @@ Create the following System variables
 ### Software preparatation
 
 	        
-	  $ mkdir aut-tests
-          git clone https://github.com/jembi/auto-test-cucumber-framework.git
+	  mkdir AutomationDevelop
+          git clone https://github.com/git-wasim/AutomationDevelop.git
           mvn clean test
 
 # 
 
 ### Framework Overview
 The cucumber BDD testing framework specifies acceptance tests as written from the view of the Product Owner. Using keywords such as Given, When, Then and And, acceptance criteria tests known as feature files can then be broken down into testable steps. 
-Jembi’s Cucumber Selenium framework is preconfigured to connect to Testrail and write test results in the form of individual test runs by specifying the test cases that are to be run.
-Each time the test is run it is written to Testrail at the end of the test cycle. All test results are written at once.
 
 #### Cucumber Selenium - Overall testframework leveraging the Cucumber framework with Selenium written in JAVA.
 
