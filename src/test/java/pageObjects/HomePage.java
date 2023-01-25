@@ -10,12 +10,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import utils.WaitHelper;
+import utils.Helper;
 
 public class HomePage {
 
 	public WebDriver driver;
-	public WaitHelper waitHelp;
+	public Helper helper;
 
 	String intercepted = "intercepted";
 	String visibility = "visibility";
@@ -26,7 +26,7 @@ public class HomePage {
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		waitHelp = new WaitHelper(driver);
+		helper = new Helper(driver);
 		value1 = new ArrayList<String>();
 		value2 = new ArrayList<String>();
 	}
@@ -86,59 +86,59 @@ public class HomePage {
 	WebElement table;
 
 	public void showRows() {
-		waitHelp.WaitForElement(showRowsDrpDwn, intercepted, Duration.ofSeconds(20));
-		waitHelp.clickByJs(showRowsDrpDwn);
-		waitHelp.WaitForElement(selectRowCount, intercepted, Duration.ofSeconds(20));
-		waitHelp.clickByJs(selectRowCount);
+		helper.WaitForElement(showRowsDrpDwn, intercepted, Duration.ofSeconds(20));
+		helper.clickByJs(showRowsDrpDwn);
+		helper.WaitForElement(selectRowCount, intercepted, Duration.ofSeconds(20));
+		helper.clickByJs(selectRowCount);
 	}
 
 	public void filterAlgoWithPoW() throws InterruptedException {
-		waitHelp.scrollIntoView(primaryFilter);
-		waitHelp.WaitForElement(primaryFilter, intercepted, Duration.ofSeconds(20));
-		waitHelp.scrollByJs(0, 450);
-		waitHelp.clickByJs(primaryFilter);
-		waitHelp.WaitForElement(filterAlgorithm, intercepted, Duration.ofSeconds(30));
+		helper.scrollIntoView(primaryFilter);
+		helper.WaitForElement(primaryFilter, intercepted, Duration.ofSeconds(20));
+		helper.scrollByJs(0, 450);
+		helper.clickByJs(primaryFilter);
+		helper.WaitForElement(filterAlgorithm, intercepted, Duration.ofSeconds(30));
 		filterAlgorithm.click();
-		waitHelp.WaitForElement(algoPoW, intercepted, Duration.ofSeconds(30));
-		waitHelp.clickByJs(algoPoW);
+		helper.WaitForElement(algoPoW, intercepted, Duration.ofSeconds(30));
+		helper.clickByJs(algoPoW);
 	}
 
 	public void addFilter() {
-		waitHelp.WaitForElement(addFilter, intercepted, Duration.ofSeconds(20));
+		helper.WaitForElement(addFilter, intercepted, Duration.ofSeconds(20));
 		addFilter.click();
 	}
 
 	public void toggleMineable() {
-		waitHelp.WaitForElement(toggleMineable, intercepted, Duration.ofSeconds(20));
+		helper.WaitForElement(toggleMineable, intercepted, Duration.ofSeconds(20));
 		toggleMineable.click();
-		waitHelp.WaitForElement(btnResult, intercepted, Duration.ofSeconds(10));
+		helper.WaitForElement(btnResult, intercepted, Duration.ofSeconds(10));
 	}
 
 	public void allCryptoCurr() {
-		waitHelp.WaitForElement(selectAllCryptoCurr, intercepted, Duration.ofSeconds(20));
+		helper.WaitForElement(selectAllCryptoCurr, intercepted, Duration.ofSeconds(20));
 //		selectAllCryptoCurr.click();
-		waitHelp.clickByJs(selectAllCryptoCurr);
+		helper.clickByJs(selectAllCryptoCurr);
 	}
 
 	public void selectCoins() {
-		waitHelp.WaitForElement(selectCoins, intercepted, Duration.ofSeconds(20));
+		helper.WaitForElement(selectCoins, intercepted, Duration.ofSeconds(20));
 		selectCoins.click();
 	}
 
 	public void selectPrice() {
-		waitHelp.WaitForElement(selectPrice, intercepted, Duration.ofSeconds(20));
+		helper.WaitForElement(selectPrice, intercepted, Duration.ofSeconds(20));
 		selectPrice.click();
 	}
 
 	public void enterValues(String min, String max) {
-		waitHelp.WaitForElement(minValue, intercepted, Duration.ofSeconds(20));
+		helper.WaitForElement(minValue, intercepted, Duration.ofSeconds(20));
 		minValue.sendKeys(min);
-		waitHelp.WaitForElement(maxValue, intercepted, Duration.ofSeconds(20));
+		helper.WaitForElement(maxValue, intercepted, Duration.ofSeconds(20));
 		maxValue.sendKeys(max);
-		waitHelp.WaitForElement(btnApplyFilter, intercepted, Duration.ofSeconds(20));
-		waitHelp.clickByJs(btnApplyFilter);
-		waitHelp.WaitForElement(btnResult, intercepted, Duration.ofSeconds(10));
-		waitHelp.clickByJs(btnResult);
+		helper.WaitForElement(btnApplyFilter, intercepted, Duration.ofSeconds(20));
+		helper.clickByJs(btnApplyFilter);
+		helper.WaitForElement(btnResult, intercepted, Duration.ofSeconds(10));
+		helper.clickByJs(btnResult);
 	}
 
 	public int getRowCount() {
@@ -154,9 +154,9 @@ public class HomePage {
 
 			WebElement element = table
 					.findElement(By.xpath("//div[@id='__next']//table/tbody/tr[" + i + "]/td[3]//a/div/div/p"));
-			waitHelp.scrollIntoView(element);
-			waitHelp.WaitForElement(element, intercepted, Duration.ofSeconds(20));
-//			waitHelp.scrollByJs(0,70);
+			helper.scrollIntoView(element);
+			helper.WaitForElement(element, intercepted, Duration.ofSeconds(20));
+//			helper.scrollByJs(0,70);
 			String name = element.getText();
 			value1.add(name);
 			System.out.println(value1);
@@ -165,15 +165,15 @@ public class HomePage {
 	}
 
 	public List<String> extractFilteredName() {
-		waitHelp.scrollIntoView(addFilter);
+		helper.scrollIntoView(addFilter);
 		for (int i = 1; i <= getRowCount(); i++) {
 			if (i == 21)
 				break;
 			else {
 				WebElement element = table
 						.findElement(By.xpath("//div[@id='__next']//table/tbody/tr[" + i + "]/td[3]//a/div/div/p"));
-				waitHelp.scrollIntoView(element);
-				waitHelp.WaitForElement(element, intercepted, Duration.ofSeconds(20));
+				helper.scrollIntoView(element);
+				helper.WaitForElement(element, intercepted, Duration.ofSeconds(20));
 				String name = element.getText();
 				value2.add(name);
 			}
