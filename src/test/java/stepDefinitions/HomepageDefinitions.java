@@ -1,9 +1,5 @@
 package stepDefinitions;
 
-import java.time.Duration;
-
-import org.openqa.selenium.chrome.ChromeDriver;
-
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,11 +10,8 @@ public class HomepageDefinitions extends BaseClass {
 	
 @Given("User Launch Chrome Browser")
 public void user_launch_chrome_browser() {
-    System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"//drivers/chromedriver.exe");
-    driver = new ChromeDriver();
+    BaseClass.initialization();
     objHp = new HomePage(driver);
-    driver.manage().window().maximize();
-    driver.manage().timeouts().pageLoadTimeout(Duration.ofMinutes(2));
     
 }
 
