@@ -24,7 +24,6 @@ public void user_opens_the_url(String url) {
 @And("Select Show Rows By Twenty")
 public void select_show_rows_by_twenty() throws InterruptedException {
     objHp.showRows();
-    Thread.sleep(2000);
 }
 
 @Then("Capture All Page Contents")

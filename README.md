@@ -8,78 +8,97 @@ Coinmarketcap website provides a detailed information of live market capitalizat
 Selenium & Java based frontend automation suite utilising the BDD methodologies of Cucumber and Gherkin 
 
 ## 1. Install JAVA SDK 8
+
+Download java jdk 8 from the below link
+https://www.oracle.com/in/java/technologies/javase/javase8-archive-downloads.html
+
 ## 2. Install Maven
+
+Install maven from below link
+https://maven.apache.org/download.cgi
+
 ## 3. Install Git
+
+Install git from below link
+https://git-scm.com/download/win
+
 ## 4. Install Eclipse
-## 5. Download chromedriver 109 https://sites.google.com/a/chromium.org/chromedriver/downloads
+
+Install eclipse from below link
+https://www.eclipse.org/downloads/
+
+## 5. Download chromedriver 109 
+
+Download driver from below link
+https://sites.google.com/a/chromium.org/chromedriver/downloads
 
 ### Set Path Variables
-
 User Variable Path = directory for java sdk 8 
 Set Maven home in environment Variables 
 
 ### For Windows
 Create the following System variables
 - JAVA_HOME = PAth to java sdk
-- M2_HOME = Path to maven installation
 - MAVEN_HOME = Path to maven installation
 
 ### For Windows Edit Path System variable 
 - Add %M2_HOME%\bin 
 - Add directory to your chromedriver.exe
 
-
 ### Software preparatation
-
-	        
-	  mkdir AutomationDevelop
-          git clone https://github.com/git-wasim/AutomationDevelop.git
-          mvn clean test
-
-# 
+- mkdir AutomationDevelop
+- git clone https://github.com/git-wasim/AutomationDevelop.git
+- mvn clean test 
 
 ### Framework Overview
-The cucumber BDD testing framework specifies acceptance tests as written from the view of the Product Owner. Using keywords such as Given, When, Then and And, acceptance criteria tests known as feature files can then be broken down into testable steps. 
+The cucumber BDD testing framework specifies acceptance tests as written from the view of the Product Owner.<br> 
+Using keywords such as Given, When, Then and And, acceptance criteria tests known as feature files can then be broken down into testable steps. 
 
-#### Cucumber Selenium - Overall testframework leveraging the Cucumber framework with Selenium written in JAVA.
+#### Cucumber Selenium 
+- Overall testframework leveraging the Cucumber framework with Selenium written in JAVA.
 
-#### Feature File - The feature file specifies the steps in BDD language style
+#### Feature File 
+- The feature file specifies the steps in BDD language style
 
-#### Hooks class - Hooks class is most important class as it performs the following functions
-Ensures feature files trigger test results posted to test rail
-Ensure the correct chromedriver depending on environment specified through Maven commands
+#### Hooks class 
+- Hooks class is most important class as it performs the following functions
+- Ensures feature files trigger test results posted to test rail
+- Ensure the correct chromedriver depending on environment specified through Maven commands
 
-#### Step Definition Feature File - Java class whereby the steps from  the feature file are broken down to be coded into automation tests
+#### Step Definition Feature File 
+- Java class whereby the steps from  the feature file are broken down to be coded into automation tests
 
-#### Feature Model Class - Java class whereby the step definition calls on methods that require action from the automated user such as entering text, finding/asserting fields on the UI
+#### Feature Model Class 
+- Java class whereby the step definition calls on methods that require action from the automated user such as entering text, finding/asserting fields on the UI
 
-#### Feature PageObject Class - Java class whereby the necessary HTML objects are captured as WebElements to be manipulated by the associated model class
+#### Feature PageObject Class 
+- Java class whereby the necessary HTML objects are captured as WebElements to be manipulated by the associated model class
 
-#### ChromeDriver.exe - Local chromedriver necessary in order 
+#### ChromeDriver.exe 
+- Local chromedriver necessary in order 
 
-#### Testrail Integration Class - Java class that writes test run results to Jembi’s test rail server
+#### Cucumber Reports 
+- Cucumber has a built in report generation whereby Feature files tested are automatically written to cucumbers own reporting system 
 
-#### Cucumber Reports - Cucumber has a built in report generation whereby Feature files tested are automatically written to cucumbers own reporting system 
-
+## Steps to write an acceptance test
 ```
-Steps to write an acceptance test
 Each Feature file has it’s step defition, pageobject & model class
               
-   1-Create Feature file and define feature scenario test & Testrail ID’s
+   1- Create Feature file and define feature scenario test & Testrail ID’s
               
-   2-Run project and copy method stubs from output
+   2- Run project and copy method stubs from output
               
-   3-Create Step definition class & paste method stubs
+   3- Create Step definition class & paste method stubs
               
-   4-Create Page Object Class and define objects required
+   4- Create Page Object Class and define objects required
               
-   5-Create Model Class & Define actions require with page objects
+   5- Create Runner Class & Define actions require with page objects
               
-   6-Instantiate model object in Step definition & execute tests required per step
+   6- Instantiate model object in Step definition & execute tests required per step
 ```
 
 ## Maven Dependencies
-
+```
 	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -197,59 +216,61 @@ Each Feature file has it’s step defition, pageobject & model class
 			</plugin>
 		</plugins>
 	</build>
-
+```
 
 ## Folder Structure
 
-## Screenshots
-
-![App Screenshot](file:///C:/Users/Mr.Chief/Documents/scrshot.png)
-
-
-#### Testrail Integration Class - Java class that writes test run results to Jembi’s test rail server
-
-#### Cucumber Reports - Cucumber has a built in report generation whereby Feature files tested are automatically written to cucumbers own reporting system 
+## Test Runner Configuration
 
 ```
-Steps to write an acceptance test
-Each Feature file has it’s step defition, pageobject & model class
-              
-   1-Create Feature file and define feature scenario test & Testrail ID’s
-              
-   2-Run project and copy method stubs from output
-              
-   3-Create Step definition class & paste method stubs
-              
-   4-Create Page Object Class and define objects required
-              
-   5-Create Model Class & Define actions require with page objects
-              
-   6-Instantiate model object in Step definition & execute tests required per step
+	- @RunWith(Cucumber.class)
+	- ucumberOptions(
+	-	features = "api.feature",
+	-	glue = "stepDefinitions",
+	-	dryRun = false,
+	-	monochrome = true,
+	-	plugin = {"pretty","json:target/cucumber-api.json","html:target/cucumber-html-report-api",
+	-			"junit:target/cucumber-api.xml"}
+	-	)
+
+	- public class TestApiRunner {
+	
+	- }
 ```
 
-#API Automation Test BDD framework
+## Execution Steps
+
+```
+	1. Open eclipse IDE
+	2. Navigate to the folder src/test/java and click on it
+	3. Go to the package testRunner
+	4. Right click on this and select Run as Junit
+```
+
+## API Automation Test BDD framework
 
 API Automation Test is RestAssured based Cucumber framework to perform API testing. This project is useful as an example of API Testing with RestAssured and Java playing nicely together.
 
-Getting Started
+### Getting Started
+
 1. git clone https://github.com/git-wasim/AutomationDevelop.git
 2. Navigate to AutomationDevelop
 In terminal from root project folder (RestasssuredCucumber), run below commands as required
 
-Run Tests
+### Run Tests
 
 To run all features mvn clean test verify
 To pass environment variable from command line mvn clean test verify -DargLine=-DWSNSHELL_HOME=RSURI RSRUI is environment passed in src-> test-> java-> base-> CryptoAPI.java and defined in config.properties
 Report Path
 
-Cucumber HTML Report: {ROOT_PROJECT_FOLDER}/target/cucumber-html-reports/overview-features.html
+### Cucumber HTML Report: 
+{ROOT_PROJECT_FOLDER}/target/cucumber-html-reports/overview-features.html
 
-Key Features
+### Key Features
 - Runtime environment set
 - Hashmap to simplify serialization of payload
 - Tag based execution
 - Detailed Cucumber Report
 - Header builder simplified
 - Reusable methods to perform GET, POST operations
-Sample Report
 

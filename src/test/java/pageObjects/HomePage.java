@@ -1,5 +1,7 @@
 package pageObjects;
 
+import static org.junit.Assert.assertTrue;
+
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +22,15 @@ public class HomePage {
 	String intercepted = "intercepted";
 	String visibility = "visibility";
 
-	static List<String> value1;
-	List<String> value2;
+	static List<String> preFilterCoins;
+	List<String> postFilterCoins;
 
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		helper = new Helper(driver);
-		value1 = new ArrayList<String>();
-		value2 = new ArrayList<String>();
+		preFilterCoins = new ArrayList<String>();
+		postFilterCoins = new ArrayList<String>();
 	}
 
 //	@FindBy(xpath="(//*[local-name()='svg' and @class='sc-aef7b723-0 dgXMPo']"
@@ -81,7 +83,7 @@ public class HomePage {
 
 	@FindBy(xpath = "//div[@id='__next']//tbody/tr/td[3]//a/div/div/p")
 	List<WebElement> firstTableCols;
-	
+
 	@FindBy(xpath = "//div[@id='__next']//table")
 	WebElement table;
 
@@ -158,10 +160,10 @@ public class HomePage {
 			helper.WaitForElement(element, intercepted, Duration.ofSeconds(20));
 //			helper.scrollByJs(0,70);
 			String name = element.getText();
-			value1.add(name);
-			System.out.println(value1);
+			preFilterCoins.add(name);
+			System.out.println(preFilterCoins);
 		}
-		return value1;
+		return preFilterCoins;
 	}
 
 	public List<String> extractFilteredName() {
@@ -175,23 +177,21 @@ public class HomePage {
 				helper.scrollIntoView(element);
 				helper.WaitForElement(element, intercepted, Duration.ofSeconds(20));
 				String name = element.getText();
-				value2.add(name);
+				postFilterCoins.add(name);
 			}
 		}
-		return value2;
+		return postFilterCoins;
 	}
 
 	public void matchData() {
-		List<String> exflname = extractFilteredName();
-		for (int i = 0; i < exflname.size(); i++) {
+		List<String> extractNames = extractFilteredName();
+		for (int i = 0; i < extractNames.size(); i++) {
 			if (i == 7) {
 				break;
 			} else {
-				if (exflname.contains(value1.get(i))) {
-					System.out.println(exflname.get(i) + " " + "is present in main content");
-				} else {
-					System.out.println(exflname.get(i) + " " + "is not present in main content");
-				}
+
+				assertTrue(extractNames.get(i) + " " + "is not present in main content",
+						preFilterCoins.contains(extractNames.get(i)));
 			}
 		}
 	}

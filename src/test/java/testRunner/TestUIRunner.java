@@ -15,6 +15,6 @@ import io.cucumber.junit.CucumberOptions;
 				"junit:target/cucumber.xml"}
 		)
 
-public class TestRunner {
+public class TestUIRunner {
 
 }

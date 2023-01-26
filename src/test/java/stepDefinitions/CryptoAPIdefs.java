@@ -18,5 +18,4 @@ public class CryptoAPIdefs extends BaseClass{
 	    objApi.priceGBPtoDOGGE(prop.getProperty("apikey"), prop.getProperty("apivalue"));
 	}
 
-
 }
