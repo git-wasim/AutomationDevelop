@@ -6,10 +6,11 @@ import io.restassured.response.Response;
 public class CryptoAPI {
 	
 	public static String GBP;
+	public static String DOGGE;
 	
 	public void priceGTQtoGBP(String apiKey, String apiValue)
 	{
-		RestAssured.baseURI = "https://sandbox-api.coinmarketcap.com";
+		RestAssured.baseURI = "https://pro-api.coinmarketcap.com";
 		
 		Response res = RestAssured.given()
 				.header(apiKey,apiValue)
@@ -21,8 +22,8 @@ public class CryptoAPI {
 		
 		GBP = res.then()
 				 .extract()
-				 .path("data.GTQ.quote.GBP.price")
-				 .toString();
+				 .path("data[0].quote.GBP.price").toString();
+				 
 		
 		System.out.println(GBP);
 		
@@ -30,7 +31,7 @@ public class CryptoAPI {
 	
 	public void priceGBPtoDOGGE(String apiKey, String apiValue)
 	{
-		RestAssured.baseURI = "https://sandbox-api.coinmarketcap.com";
+		RestAssured.baseURI = "https://pro-api.coinmarketcap.com";
 		
 		Response res = RestAssured.given()
 				.header(apiKey,apiValue)
@@ -40,10 +41,9 @@ public class CryptoAPI {
 				.when()
 				.get("/v2/tools/price-conversion");
 		
-		String DOGGE = res.then()
+		DOGGE = res.then()
 				.extract()
-				.path("data.GBP.quote.DOGE.price")
-				.toString();
+				.path("data[0].quote.DOGE.price").toString();
 		
 		System.out.println(DOGGE);
 		
