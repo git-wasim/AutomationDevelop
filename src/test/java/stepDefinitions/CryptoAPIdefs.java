@@ -1,8 +1,8 @@
 package stepDefinitions;
 
+import builderAPI.CryptoAPI;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import pageObjects.CryptoAPI;
 import utils.BaseClass;
 
 public class CryptoAPIdefs extends BaseClass{

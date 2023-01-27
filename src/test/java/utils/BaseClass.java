@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import pageObjects.CryptoAPI;
+import builderAPI.CryptoAPI;
 import pageObjects.HomePage;
 
 public class BaseClass {
