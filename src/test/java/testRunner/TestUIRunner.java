@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "C:\\Automation\\AutomationDevelop\\src\\test\\resources\\Features\\homepage.feature",
+		features = "../AutomationDevelop/src/test/resources/Features/homepage.feature",
 		glue = "stepDefinitions",
 		dryRun = false,
 		monochrome = true,
