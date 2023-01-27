@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
 		glue = "stepDefinitions",
 		dryRun = false,
 		monochrome = true,
-		plugin = {"pretty","json:target/cucumber.json","html:target/cucumber-html-report",
+		plugin = {"pretty","json:target/cucumber.json","html:target/cucumber-html-report/cryptoui.html",
 				"junit:target/cucumber.xml"}
 		)
 

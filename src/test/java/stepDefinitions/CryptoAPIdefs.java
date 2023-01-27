@@ -7,10 +7,10 @@ import utils.BaseClass;
 
 public class CryptoAPIdefs extends BaseClass{
 	
-	@Given("Convert Price From GTQ to GBP")
-	public void convert_price_from_gtq_to_gbp() {
+	@Given("Convert Price From GTQ to GBP {string}")
+	public void convert_price_from_gtq_to_gbp(String price) {
 	    objApi = new CryptoAPI();
-	    objApi.priceGTQtoGBP(prop.getProperty("apikey"), prop.getProperty("apivalue"));
+	    objApi.priceGTQtoGBP(prop.getProperty("apikey"), prop.getProperty("apivalue"), price);
 	}
 
 	@Then("Convert Price From GBP to DOGGE")

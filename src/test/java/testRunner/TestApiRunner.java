@@ -7,11 +7,11 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "C:\\Automation\\AutomationDevelop\\src\\test\\resources\\Features\\api.feature",
+		features = "../AutomationDevelop/src/test/resources/Features/api.feature",
 		glue = "stepDefinitions",
 		dryRun = false,
 		monochrome = true,
-		plugin = {"pretty","json:target/cucumber-api.json","html:target/cucumber-html-report-api",
+		plugin = {"pretty","json:target/cucumber-api.json","html:target/cucumber-html-report/api.html",
 				"junit:target/cucumber-api.xml"}
 		)
 

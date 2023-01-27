@@ -18,9 +18,9 @@ public class CryptoAPI {
 		return reqspec;
 	}
 
-	public void priceGTQtoGBP(String apiKey, String apiValue) {
+	public void priceGTQtoGBP(String apiKey, String apiValue, String price) {
 		Response res = apiAuth(apiKey, apiValue)
-				.queryParam("amount", "10000000")
+				.queryParam("amount", price)
 				.queryParam("convert", "GBP")
 				.queryParam("symbol", "GTQ")
 				.when().get(apiEndpoint);
